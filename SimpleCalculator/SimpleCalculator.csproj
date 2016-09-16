@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Math.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="StackBuilder.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

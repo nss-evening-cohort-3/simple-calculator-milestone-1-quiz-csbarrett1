@@ -1,32 +1,31 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace SimpleCalculator.Tests
 {
     [TestClass]
-    public class ExpressionTests
+    public class ExpressionTest
     {
         [TestMethod]
         public void ExpressionEnsureICanCreateAnInstance()
         {
-            Expression expressionCommand = new Expression();
+            Expression expression_cmd = new Expression();
+            Assert.IsNotNull(expression_cmd);
 
-            Assert.IsNotNull(expressionCommand);
         }
 
         [TestMethod]
-        public void ExtractingTermsOfExpression()
+        public void ExpressionsTesting()
         {
-
-            //Arrange
-            Expression term = new Expression();
-
-            //Act
-            int ResultingTerm = term.FirstTerm();
-
-            //Assert
-            Assert.IsTrue(ResultingTerm is ); 
+            // Arrange
+            Expression expression_cmd = new Expression();
+            
+            // Act
+            string firstTerm = expression_cmd.ExpressionHandler("5");
+            
+            // Assert
+            Assert.AreEqual(firstTerm, 5);
+            
         }
     }
 }

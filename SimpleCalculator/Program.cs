@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace SimpleCalculator
 {
@@ -10,71 +12,27 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
-
-            var i = 0;
-            string prompt = ">";
-            int counter = i;
-            char[] operatorSymbols = { '+', '-', '/', '*', '%' };
+            StackBuilder stack = new StackBuilder();
+            Expression exp = new Expression();
+            Message message = new Message();
             bool keepGoing = true;
-
-            while (keepGoing)
+            int counter = 0;
+            while (keepGoing == true)
             {
-                Console.Write("[" + counter++ + "]" + prompt + " ");
-
-                string equation = Convert.ToString(Console.ReadLine());
-
-                string[] numbers = equation.Split(operatorSymbols);
-
-
-                List<int> digits = new List<int>();
-                foreach (string n in numbers)
+                string prompt = "[" + counter + "]> ";
+                Console.Write(prompt);
+                string input = Console.ReadLine().ToLower();
+                counter += 1;
+                if (input == "exit" | input == "quit")
                 {
-                    int digit = Int32.Parse(n);
-                    digits.Add(digit);
-                }
-
-                if (digits.Count != 2)
-                {
-                    Console.WriteLine("YOU GOTTA PUT IN TWO NUMBERS!");
-                }
-
-                if (equation.Contains("+"))
-                {
-                    int answer = digits[0] + digits[1];
-                    Console.WriteLine("   = " + answer);
-                }
-                else if (equation.Contains("-"))
-                {
-                    int answer = digits[0] - digits[1];
-                    Console.WriteLine("   = " + answer);
-                }
-                else if (equation.Contains("/"))
-                {
-                    int answer = digits[0] / digits[1];
-                    Console.WriteLine("   = " + answer);
-                }
-                else if (equation.Contains("*"))
-                {
-                    int answer = digits[0] * digits[1];
-                    Console.WriteLine("   = " + answer);
+                    Console.WriteLine("Goodbye");
+                    keepGoing = false;
                 }
                 else
                 {
-                    Console.WriteLine("WHAT AM I SUPPOSED TO DO WITH THAT?!");
+                    Console.WriteLine("   = " + exp.ExpressionHandler(input));
                 }
-                
-
-
-
-
-
-
-
-
             }
-
-
-            Console.ReadKey();
         }
     }
 }
